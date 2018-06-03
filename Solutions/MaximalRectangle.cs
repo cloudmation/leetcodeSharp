@@ -1,6 +1,8 @@
 ﻿namespace Solutions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     // 85. Maximal Rectangle
     public class MaximalRectangle
@@ -30,23 +32,21 @@
             return maxArea;
         }
 
-        private int MaxHistogramArea(int[] dp)
+        private int MaxHistogramArea(int[] heights)
         {
             int area = 0;
-            for (int i = 0; i < dp.Length; i++)
+            var stack = new Stack<int>();
+            for (int i = 0; i <= heights.Length; i++)
             {
-                if (dp[i] != 0)
+                int h = (heights.Length == i) ? 0 : heights[i];
+                while (stack.Any() && heights[stack.Peek()] > h)
                 {
-                    area = Math.Max(area, dp[i]);
-                    var startIndex = i;
-                    var minValue = int.MaxValue;
-                    while (startIndex < dp.Length && dp[startIndex] != 0)
-                    {
-                        minValue = Math.Min(minValue, dp[startIndex]);
-                        area = Math.Max(area, minValue * (startIndex - i + 1));
-                        startIndex++;
-                    }
+                    var cur = stack.Pop();
+                    int start = !stack.Any() ? -1 : stack.Peek();
+                    var currentArea = (i - start - 1) * heights[cur];
+                    area = Math.Max(area, currentArea);
                 }
+                stack.Push(i);
             }
             return area;
         }
