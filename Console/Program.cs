@@ -9,7 +9,7 @@
         private static void Main(string[] args)
         {
             var solution = new MaximalRectangle();
-            var result = solution.Maximal(new[,] {{'1', '0'},{'1', '0'}});
+            var result = solution.MaximalBruteForce(new[,] {{'1', '0'},{'1', '0'}});
             Console.Write("results:" + result);
             Console.Read();
         }
