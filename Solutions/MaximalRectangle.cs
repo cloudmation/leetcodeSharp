@@ -2,8 +2,55 @@
 {
     using System;
 
+    // 85. Maximal Rectangle
     public class MaximalRectangle
     {
+        public int MaximalHistogram(char[,] matrix)
+        {
+            int maxArea = 0;
+            var dp = new int[matrix.GetLength(1)];
+
+            // populate first row as base case
+            for (var j = 0; j < matrix.GetLength(1); j++)
+            {
+                dp[j] = matrix[0, j] == '0' ? 0 : 1;
+                maxArea = Math.Max(maxArea, this.MaxHistogramArea(dp));
+            }
+
+            for (int i = 1; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    dp[j] = matrix[i, j] == '0' ? 0 : dp[j] + 1;
+                }
+             
+                maxArea = Math.Max(maxArea, this.MaxHistogramArea(dp));
+            }
+
+            return maxArea;
+        }
+
+        private int MaxHistogramArea(int[] dp)
+        {
+            int area = 0;
+            for (int i = 0; i < dp.Length; i++)
+            {
+                if (dp[i] != 0)
+                {
+                    area = Math.Max(area, dp[i]);
+                    var startIndex = i;
+                    var minValue = int.MaxValue;
+                    while (startIndex < dp.Length && dp[startIndex] != 0)
+                    {
+                        minValue = Math.Min(minValue, dp[startIndex]);
+                        area = Math.Max(area, minValue * (startIndex - i + 1));
+                        startIndex++;
+                    }
+                }
+            }
+            return area;
+        }
+
         public int MaximalBruteForce(char[,] matrix)
         {
             int maxArea = 0;
