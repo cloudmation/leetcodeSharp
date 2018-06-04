@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BurstBalloon.cs" />
     <Compile Include="CoinChange2.cs" />
+    <Compile Include="KeysAndRooms.cs" />
     <Compile Include="MaximalRectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utlilitiy.cs" />
