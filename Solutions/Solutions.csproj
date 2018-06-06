@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryTreeLevelOrderTraversal.cs" />
     <Compile Include="BurstBalloon.cs" />
     <Compile Include="CoinChange2.cs" />
     <Compile Include="KeysAndRooms.cs" />
