@@ -1,6 +1,7 @@
 ﻿namespace Solutions
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class BinaryTreeLevelOrderTraversal
     {
@@ -35,6 +36,36 @@
                 results.Add(currentList);
             }
             return results;
+        }
+
+        public IList<IList<int>> LevelOrderRecursive(TreeNode root)
+        {
+            if (root == null) return new List<IList<int>>();
+            var results = new List<IList<int>>();
+            Helper(results, root, 0);
+            return results;
+        }
+
+        private void Helper(IList<IList<int>> results, TreeNode root, int level)
+        {
+            if (root == null) return;
+
+            if (level >= results.Count)
+            {
+                results.Add(new List<int>());
+            }
+
+            results[level].Add(root.val);
+
+            if (root.left != null)
+            {
+                Helper(results, root.left, level + 1);
+            }
+
+            if (root.right != null)
+            {
+                Helper(results, root.right, level + 1);
+            }
         }
 
         public class TreeNode
