@@ -1,8 +1,12 @@
 ﻿namespace Solutions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.InteropServices;
     using System.Text;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     public static class Utlilitiy
     {
@@ -21,6 +25,19 @@
             }
 
             return builder.ToString();
-        } 
+        }
+
+        public static void AssertAreEqual(IList<IList<int>> expected, IList<IList<int>> actual)
+        {
+            if (expected.Count != actual.Count)
+            {
+                Assert.Fail("Different number of lists.");
+            }
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                CollectionAssert.AreEqual(expected[i].ToArray(), actual[i].ToArray());
+            }
+        }
     }
 }

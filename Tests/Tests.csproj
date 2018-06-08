@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryTreeLevelOrderTraversalTest.cs" />
+    <Compile Include="BinaryTreeVerticalOrderTraversalTest.cs" />
     <Compile Include="KeysAndRoomsTest.cs" />
     <Compile Include="MaximalRectangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

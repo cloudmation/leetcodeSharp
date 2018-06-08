@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class BinaryTreeLevelOrderTraversal
+    public partial class BinaryTreeLevelOrderTraversal
     {
         public IList<IList<int>> LevelOrder(TreeNode root)
         {
@@ -65,20 +65,6 @@
             if (root.right != null)
             {
                 Helper(results, root.right, level + 1);
-            }
-        }
-
-        public class TreeNode
-        {
-            public TreeNode left;
-
-            public TreeNode right;
-
-            public int val;
-
-            public TreeNode(int x)
-            {
-                this.val = x;
             }
         }
     }

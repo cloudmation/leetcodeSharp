@@ -14,20 +14,21 @@
         public void TestIterative()
         {
             var sol = new BinaryTreeLevelOrderTraversal();
-            BinaryTreeLevelOrderTraversal.TreeNode root = new BinaryTreeLevelOrderTraversal.TreeNode(3);
-            root.left = new BinaryTreeLevelOrderTraversal.TreeNode(9);
-            root.right =
-                new BinaryTreeLevelOrderTraversal.TreeNode(20)
-                    {
-                        left = new BinaryTreeLevelOrderTraversal.TreeNode(15)
-                    };
-            root.right.left = new BinaryTreeLevelOrderTraversal.TreeNode(7);
+            var root = new TreeNode(3)
+                                {
+                                    left = new TreeNode(9),
+                                    right = new TreeNode(20)
+                                                {
+                                                    left = new TreeNode(15),
+                                                    right = new TreeNode(7)
+                                                }
+                                };
             var ret = sol.LevelOrder(root);
             IList<IList<int>> expected = new List<IList<int>>();
             expected.Add(new List<int>() { 3 });
             expected.Add(new List<int>() { 9, 20 });
             expected.Add(new List<int>() { 15, 7 });
-            CollectionAssert.AreEqual(expected.ToArray(), ret.ToArray());
+            Utlilitiy.AssertAreEqual(expected, ret);
         }
     }
 }
