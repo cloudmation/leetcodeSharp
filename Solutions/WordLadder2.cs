@@ -1,6 +1,5 @@
 ﻿namespace Solutions
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -27,6 +26,7 @@
                     res.RemoveAt(i);
                 }
             }
+
             return res;
         }
 
@@ -37,6 +37,7 @@
             while (queue.Any())
             {
                 var currentNode = queue.Dequeue();
+                if (currentNode.Level > this.minLevel) return;
                 if (currentNode.Word.Equals(endWord) && currentNode.Level <= this.minLevel)
                 {
                     var list = new List<string>();
@@ -50,49 +51,15 @@
                         parent = parent.Parent;
                     }
                 }
-                else
+
+                foreach (var w in currentNode.WordSet)
                 {
-                    foreach (var w in currentNode.WordSet)
-                    {
-                        if (!this.CanTransform(currentNode.Word, w)) continue;
-                        var nextSet = new HashSet<string>(currentNode.WordSet);
-                        nextSet.Remove(w);
-                        var childNode = new TreeNode(w, nextSet, currentNode, currentNode.Level + 1);
-                        queue.Enqueue(childNode);
-                    }
+                    if (!this.CanTransform(currentNode.Word, w)) continue;
+                    var nextSet = new HashSet<string>(currentNode.WordSet);
+                    nextSet.Remove(w);
+                    var childNode = new TreeNode(w, nextSet, currentNode, currentNode.Level + 1);
+                    queue.Enqueue(childNode);
                 }
-                
-            }
-        }
-
-        private void BuildTreeDfs(TreeNode node, HashSet<string> wordSet, string endWord, IList<IList<string>> res)
-        {
-            if (wordSet.Count == 0) return;
-            if (node.Level > this.minLevel) return;
-            if (node.Word.Equals(endWord) && node.Level <= this.minLevel)
-            {
-                var list = new List<string>();
-                res.Add(list);
-                list.Add(endWord);
-                this.minLevel = node.Level;
-                var parent = node.Parent;
-                while (parent != null)
-                {
-                    list.Insert(0, parent.Word);
-                    parent = parent.Parent;
-                }
-           
-
-            return;
-            }
-
-            foreach (var w in wordSet)
-            {
-                if (!this.CanTransform(node.Word, w)) continue;
-                var nextSet = new HashSet<string>(wordSet);
-                nextSet.Remove(w);
-                var childNode = new TreeNode(w, nextSet, node, node.Level + 1);
-                this.BuildTreeDfs(childNode, nextSet, endWord, res);
             }
         }
 
@@ -121,7 +88,7 @@
             }
 
             public int Level { get; set; }
-            
+
             public TreeNode Parent { get; set; }
 
             public string Word { get; set; }

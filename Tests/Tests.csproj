@@ -55,6 +55,7 @@
     <Compile Include="MaximalRectangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordLadder2Test.cs" />
+    <Compile Include="WordLadderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
