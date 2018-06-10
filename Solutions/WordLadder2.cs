@@ -52,10 +52,10 @@
                 }
                 else
                 {
-                    foreach (var w in wordSet)
+                    foreach (var w in currentNode.WordSet)
                     {
                         if (!this.CanTransform(currentNode.Word, w)) continue;
-                        var nextSet = new HashSet<string>(wordSet);
+                        var nextSet = new HashSet<string>(currentNode.WordSet);
                         nextSet.Remove(w);
                         var childNode = new TreeNode(w, nextSet, currentNode, currentNode.Level + 1);
                         queue.Enqueue(childNode);

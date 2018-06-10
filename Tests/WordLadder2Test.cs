@@ -43,7 +43,7 @@
                 "miss",
                 new List<string>() { "most", "mist", "miss", "lost", "fist", "fish" });
             IList<IList<string>> expected = new List<IList<string>>();
-            expected.Add(new List<string>() { "lost", "most", "mist", "miss"});
+            expected.Add(new List<string>() { "lost", "most", "mist", "miss" });
             Utlilitiy.AssertAreEqual(expected, res);
         }
 
