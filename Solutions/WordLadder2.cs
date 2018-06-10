@@ -13,8 +13,13 @@
             var res = new List<IList<string>>();
             var wordSet = new HashSet<string>(wordList);
             if (!wordSet.Contains(endWord)) return res;
+            if (wordSet.Contains(beginWord))
+            {
+                wordSet.Remove(beginWord);
+            }
+
             var root = new TreeNode(beginWord, wordSet, null, 0);
-            this.BuildTree(root, wordSet, endWord, res);
+            this.BuildTreeBfs(root, wordSet, endWord, res);
             for (int i = res.Count - 1; i >= 0; i--)
             {
                 if (res[i].Count > this.minLevel + 1)
@@ -25,10 +30,45 @@
             return res;
         }
 
+        private void BuildTreeBfs(TreeNode root, HashSet<string> wordSet, string endWord, IList<IList<string>> res)
+        {
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            while (queue.Any())
+            {
+                var currentNode = queue.Dequeue();
+                if (currentNode.Word.Equals(endWord) && currentNode.Level <= this.minLevel)
+                {
+                    var list = new List<string>();
+                    res.Add(list);
+                    list.Add(endWord);
+                    this.minLevel = currentNode.Level;
+                    var parent = currentNode.Parent;
+                    while (parent != null)
+                    {
+                        list.Insert(0, parent.Word);
+                        parent = parent.Parent;
+                    }
+                }
+                else
+                {
+                    foreach (var w in wordSet)
+                    {
+                        if (!this.CanTransform(currentNode.Word, w)) continue;
+                        var nextSet = new HashSet<string>(wordSet);
+                        nextSet.Remove(w);
+                        var childNode = new TreeNode(w, nextSet, currentNode, currentNode.Level + 1);
+                        queue.Enqueue(childNode);
+                    }
+                }
+                
+            }
+        }
 
-        private void BuildTree(TreeNode node, HashSet<string> wordSet, string endWord, IList<IList<string>> res)
+        private void BuildTreeDfs(TreeNode node, HashSet<string> wordSet, string endWord, IList<IList<string>> res)
         {
             if (wordSet.Count == 0) return;
+            if (node.Level > this.minLevel) return;
             if (node.Word.Equals(endWord) && node.Level <= this.minLevel)
             {
                 var list = new List<string>();
@@ -52,8 +92,7 @@
                 var nextSet = new HashSet<string>(wordSet);
                 nextSet.Remove(w);
                 var childNode = new TreeNode(w, nextSet, node, node.Level + 1);
-                node.Childern.Add(childNode);
-                this.BuildTree(childNode, nextSet, endWord, res);
+                this.BuildTreeDfs(childNode, nextSet, endWord, res);
             }
         }
 
@@ -68,7 +107,7 @@
                 }
             }
 
-            return change == 1 ? true : false;
+            return change == 1;
         }
 
         private class TreeNode
@@ -79,13 +118,10 @@
                 this.Word = word;
                 this.WordSet = wordSet;
                 this.Parent = parent;
-                this.Childern = new List<TreeNode>();
             }
 
             public int Level { get; set; }
-
-            public IList<TreeNode> Childern { get; set; }
-
+            
             public TreeNode Parent { get; set; }
 
             public string Word { get; set; }

@@ -57,6 +57,7 @@
     <Compile Include="TreeNode.cs" />
     <Compile Include="Utlilitiy.cs" />
     <Compile Include="WordLadder2.cs" />
+    <Compile Include="WordLadder2Sol2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
