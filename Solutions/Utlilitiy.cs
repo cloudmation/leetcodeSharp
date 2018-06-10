@@ -27,11 +27,11 @@
             return builder.ToString();
         }
 
-        public static void AssertAreEqual(IList<IList<int>> expected, IList<IList<int>> actual)
+        public static void AssertAreEqual<T>(IList<IList<T>> expected, IList<IList<T>> actual)
         {
             if (expected.Count != actual.Count)
             {
-                Assert.Fail("Different number of lists.");
+                Assert.Fail($"Different number of lists. expected:{expected.Count} actual:{actual.Count}");
             }
 
             for (int i = 0; i < expected.Count; i++)
