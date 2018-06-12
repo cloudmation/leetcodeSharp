@@ -27,6 +27,18 @@
             return builder.ToString();
         }
 
+        public static string Print<T>(this T[] array)
+        {
+            var builder = new StringBuilder();
+            foreach (var t in array)
+            {
+                builder.Append($"[{t}]");
+            }
+
+            builder.Append(Environment.NewLine);
+            return builder.ToString();
+        }
+
         public static void AssertAreEqual<T>(IList<IList<T>> expected, IList<IList<T>> actual)
         {
             if (expected.Count != actual.Count)

@@ -52,6 +52,7 @@
     <Compile Include="BinaryTreeVerticalOrderTraversalTest.cs" />
     <Compile Include="BinaryTreeZigzagLevelOrderTraversalTest.cs" />
     <Compile Include="KeysAndRoomsTest.cs" />
+    <Compile Include="LoudAndRichSolTest.cs" />
     <Compile Include="MaximalRectangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordLadder2Test.cs" />

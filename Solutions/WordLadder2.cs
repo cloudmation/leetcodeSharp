@@ -18,16 +18,58 @@
             }
 
             var root = new TreeNode(beginWord, wordSet, null, 0);
-            this.BuildTreeBfs(root, wordSet, endWord, res);
-            for (int i = res.Count - 1; i >= 0; i--)
-            {
-                if (res[i].Count > this.minLevel + 1)
-                {
-                    res.RemoveAt(i);
-                }
-            }
+            this.BuildTreeBfs2(beginWord, endWord, wordSet, res);
+            // for (int i = res.Count - 1; i >= 0; i--)
+            // {
+            //     if (res[i].Count > this.minLevel + 1)
+            //     {
+            //         res.RemoveAt(i);
+            //     }
+            // }
 
             return res;
+        }
+
+        public void BuildTreeBfs2(string beginWord, string endWord, HashSet<string> wordSet, IList<IList<string>> res)
+        {
+            if (wordSet.Contains(beginWord))
+            {
+                wordSet.Remove(beginWord);
+            }
+
+            var queue = new Queue<string>();
+            queue.Enqueue(beginWord);
+            var levelMap = new Dictionary<string, int> { { beginWord, 1 } };
+            var ans = new List<string>();
+            res.Add(ans);
+            ans.Add(beginWord);
+            while (queue.Any())
+            {
+                var word = queue.Dequeue();
+                int curLevel = levelMap[word];
+                for (int i = 0; i < word.Length; i++)
+                {
+                    var wordChar = word.ToCharArray();
+                    for (char j = 'a'; j <= 'z'; j++)
+                    {
+                        wordChar[i] = j;
+                        var temp = new string(wordChar);
+                        if (wordSet.Contains(temp))
+                        {
+                            if (temp.Equals(endWord))
+                            {
+                                ans.Add(endWord);
+                                return;
+                            }
+
+                            levelMap.Add(temp, curLevel + 1);
+                            queue.Enqueue(temp);
+                            wordSet.Remove(temp);
+                            ans.Add(temp);
+                        }
+                    }
+                }
+            }
         }
 
         private void BuildTreeBfs(TreeNode root, HashSet<string> wordSet, string endWord, IList<IList<string>> res)
