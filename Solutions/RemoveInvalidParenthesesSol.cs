@@ -5,39 +5,37 @@
 
     public class RemoveInvalidParenthesesSol
     {
-        private int minSteps = int.MaxValue;
-
-        private int totalLength = 0;
-
         public IList<string> RemoveInvalidParentheses(string s)
         {
+            if (string.IsNullOrEmpty(s)) return new List<string> { string.Empty };
             var res = new List<string>();
-            if (s == null) return res;
-            this.totalLength = s.Length;
-            this.Helper(s, res);
-            for (int i = res.Count - 1; i >= 0; i--)
+            var visited = new HashSet<string>();
+            var queue = new Queue<string>();
+            queue.Enqueue(s);
+            var found = false;
+            while (queue.Any())
             {
-                if (s.Length - res[i].Length > this.minSteps)
+                var node = queue.Dequeue();
+                if (this.IsValid(node))
                 {
-                    res.RemoveAt(i);
+                    res.Add(node);
+                    found = true;
+                }
+
+                if (found) continue;
+                for (int i = 0; i < node.Length; i++)
+                {
+                    if (node[i] != '(' && node[i] != ')') continue;
+                    var child = node.Remove(i, 1);
+                    if (!visited.Contains(child))
+                    {
+                        queue.Enqueue(child);
+                        visited.Add(child);
+                    }
                 }
             }
-            return res;
-        }
 
-        private void Helper(string chosen, IList<string> res)
-        {
-            if (this.minSteps >= (this.totalLength - chosen.Length) && !res.Contains(chosen) && this.IsValid(chosen))
-            {
-                this.minSteps = this.totalLength - chosen.Length;
-                res.Add(chosen);
-                return;
-            }
-
-            for (int i = 0; i < chosen.Length; i++)
-            {
-                this.Helper(chosen.Remove(i, 1), res);
-            }
+            return res.Count() != 0 ? res : new List<string> { string.Empty };
         }
 
         private bool IsValid(string chosen)
@@ -51,7 +49,7 @@
                 }
                 else if (chosen[i] == ')')
                 {
-                    if(!stack.Any()) return false;
+                    if (!stack.Any()) return false;
                     stack.Pop();
                 }
             }

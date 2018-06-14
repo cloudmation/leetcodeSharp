@@ -17,5 +17,13 @@
             var res = sol.RemoveInvalidParentheses("()())()");
             CollectionAssert.AreEquivalent(new List<string> { "()()()", "(())()" }.ToArray(), res.ToArray());
         }
+
+        [TestMethod]
+        public void Test2()
+        {
+            var sol = new RemoveInvalidParenthesesSol();
+            var res = sol.RemoveInvalidParentheses("n");
+            CollectionAssert.AreEquivalent(new List<string> { "n" }.ToArray(), res.ToArray());
+        }
     }
 }
