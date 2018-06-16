@@ -48,7 +48,7 @@
 
             for (int i = 0; i < expected.Count; i++)
             {
-                CollectionAssert.AreEqual(expected[i].ToArray(), actual[i].ToArray());
+                CollectionAssert.AreEquivalent(expected[i].ToArray(), actual[i].ToArray());
             }
         }
     }
