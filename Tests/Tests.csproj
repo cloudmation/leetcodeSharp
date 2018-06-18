@@ -53,6 +53,7 @@
     <Compile Include="BinaryTreeZigzagLevelOrderTraversalTest.cs" />
     <Compile Include="ContainsDuplicateIIITest.cs" />
     <Compile Include="KeysAndRoomsTest.cs" />
+    <Compile Include="LetterCasePermutationSolTest.cs" />
     <Compile Include="LoudAndRichSolTest.cs" />
     <Compile Include="MaximalRectangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

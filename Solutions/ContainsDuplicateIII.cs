@@ -50,21 +50,25 @@ namespace Solutions
 
             var n = nums.Length;
             var dict = new Dictionary<long, long>();
-
+            var bucketSize = t + (long)1;
             for (var i = 0; i < n; i++)
             {
-                var value = nums[i] - (long)int.MinValue;
-                var bucket = value / (t + (long)1);
+                var bucket = getID(nums[i], bucketSize);
 
                 if (dict.ContainsKey(bucket)) return true;
-                if (dict.ContainsKey(bucket - 1) && value - dict[bucket - 1] <= t) return true;
-                if (dict.ContainsKey(bucket + 1) && dict[bucket + 1] - value <= t) return true;
-                if (dict.Count >= k) dict.Remove((nums[i - k] - (long)int.MinValue) / (t + (long)1));
-
-                dict[bucket] = value;
+                if (dict.ContainsKey(bucket - 1) && nums[i] - dict[bucket - 1] <= t) return true;
+                if (dict.ContainsKey(bucket + 1) && dict[bucket + 1] - nums[i] <= t) return true;
+                if (dict.Count >= k) dict.Remove(getID(nums[i - k], bucketSize));
+               
+                dict[bucket] = nums[i];
             }
 
             return false;
+        }
+
+        private long getID(long value, long bucketSize)
+        {
+            return value < 0 ? (value + 1) / bucketSize - 1 : value / bucketSize;
         }
     }
 }

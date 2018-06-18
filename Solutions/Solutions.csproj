@@ -53,6 +53,7 @@
     <Compile Include="CoinChange2.cs" />
     <Compile Include="ContainsDuplicateIII.cs" />
     <Compile Include="KeysAndRooms.cs" />
+    <Compile Include="LetterCasePermutationSol.cs" />
     <Compile Include="LoudAndRich.cs" />
     <Compile Include="MaximalRectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
