@@ -51,6 +51,7 @@
     <Compile Include="BinaryTreeLevelOrderTraversalTest.cs" />
     <Compile Include="BinaryTreeVerticalOrderTraversalTest.cs" />
     <Compile Include="BinaryTreeZigzagLevelOrderTraversalTest.cs" />
+    <Compile Include="CombinationsTest.cs" />
     <Compile Include="ContainsDuplicateIIITest.cs" />
     <Compile Include="KeysAndRoomsTest.cs" />
     <Compile Include="LetterCasePermutationSolTest.cs" />
