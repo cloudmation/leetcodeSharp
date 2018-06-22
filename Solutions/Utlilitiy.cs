@@ -1,6 +1,12 @@
-﻿namespace Solutions
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Solutions
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.InteropServices;
@@ -51,5 +57,44 @@
                 CollectionAssert.AreEquivalent(expected[i].ToArray(), actual[i].ToArray());
             }
         }
+
+        public static void AssertAreEqualIgnoreOrder<T>(IList<IList<T>> expected, IList<IList<T>> actual)
+        {
+            if (expected.Count != actual.Count)
+            {
+                Assert.Fail($"Different number of lists. expected:{expected.Count} actual:{actual.Count}");
+            }
+
+            var actualSet = new HashSet<IEnumerable<T>>();
+            foreach (var a in actual)
+            {
+                actualSet.Add(a.ToArray());
+            }
+
+            var actualSetCount = actualSet.Count;
+            for (int i = 0; i < expected.Count; i++)
+            {
+                var cur = expected[i].ToArray();
+                if (actualSet.Contains(cur, new ArrayComparer<T>()))
+                {
+                    actualSetCount--;
+                }
+            }
+
+            Assert.AreEqual(0, actualSetCount);
+        }
+    }
+}
+
+public class ArrayComparer<T> : IEqualityComparer<IEnumerable<T>>
+{
+    public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
+    {
+        return x.SequenceEqual(y);
+    }
+
+    public int GetHashCode(IEnumerable<T> obj)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -108,7 +108,7 @@
             expected.Add(new List<string>() { "qa", "ya", "yb", "sb", "sq" });
             expected.Add(new List<string>() { "qa", "ra", "rh", "sh", "sq" });
             expected.Add(new List<string>() { "qa", "ta", "th", "sh", "sq" });
-            Utlilitiy.AssertAreEqual(expected, res);
+            Utlilitiy.AssertAreEqualIgnoreOrder(expected, res);
         }
     }
 }
