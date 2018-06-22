@@ -53,6 +53,7 @@
     <Compile Include="BurstBalloon.cs" />
     <Compile Include="CoinChange2.cs" />
     <Compile Include="CombinationsSol.cs" />
+    <Compile Include="CombinationSumSol.cs" />
     <Compile Include="ContainsDuplicateIII.cs" />
     <Compile Include="KeysAndRooms.cs" />
     <Compile Include="LetterCasePermutationSol.cs" />
