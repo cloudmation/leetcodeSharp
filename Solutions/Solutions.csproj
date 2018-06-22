@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeautifulArrangement.cs" />
     <Compile Include="BinaryTreeLevelOrderTraversal.cs" />
     <Compile Include="BinaryTreeVerticalOrderTraversal.cs" />
     <Compile Include="BinaryTreeZigzagLevelOrderTraversal.cs" />

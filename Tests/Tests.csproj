@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeautifulArrangementTest.cs" />
     <Compile Include="BinaryTreeLevelOrderTraversalTest.cs" />
     <Compile Include="BinaryTreeVerticalOrderTraversalTest.cs" />
     <Compile Include="BinaryTreeZigzagLevelOrderTraversalTest.cs" />
