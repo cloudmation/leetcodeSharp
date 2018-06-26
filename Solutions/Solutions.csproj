@@ -61,6 +61,8 @@
     <Compile Include="MaximalRectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoveInvalidParenthesesSol.cs" />
+    <Compile Include="RestoreIPAddressesSol.cs" />
+    <Compile Include="SubsetsSol.cs" />
     <Compile Include="TreeNode.cs" />
     <Compile Include="Utlilitiy.cs" />
     <Compile Include="WordLadder.cs" />
