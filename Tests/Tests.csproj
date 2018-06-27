@@ -59,6 +59,7 @@
     <Compile Include="LetterCasePermutationSolTest.cs" />
     <Compile Include="LoudAndRichSolTest.cs" />
     <Compile Include="MaximalRectangleTest.cs" />
+    <Compile Include="PalindromePartitioningTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoveInvalidParenthesesTest.cs" />
     <Compile Include="RestoreIPAddressesTest.cs" />
