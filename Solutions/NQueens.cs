@@ -33,16 +33,13 @@ namespace Solutions
                 res.Add(list);
             }
 
-            for (int i = rowIndex; i < n; i++)
+            for (int i = colIndex; i < n; i++)
             {
-                for (int j = colIndex; j < n; j++)
-                {
-                    var current = Tuple.Create(i, j);
-                    if (IsAttacking(currentList, current)) continue;
-                    currentList.Add(current);
-                    Helper(n, res, currentList, rowIndex + 1, colIndex);
-                    currentList.RemoveAt(currentList.Count - 1);
-                }
+                var current = Tuple.Create(rowIndex, i);
+                if (IsAttacking(currentList, current)) continue;
+                currentList.Add(current);
+                Helper(n, res, currentList, rowIndex + 1, colIndex);
+                currentList.RemoveAt(currentList.Count - 1);
             }
 
         }
