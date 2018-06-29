@@ -59,6 +59,7 @@
     <Compile Include="LetterCasePermutationSol.cs" />
     <Compile Include="LoudAndRich.cs" />
     <Compile Include="MaximalRectangle.cs" />
+    <Compile Include="NQueens.cs" />
     <Compile Include="PalindromePartitionII.cs" />
     <Compile Include="PalindromePartitioning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
