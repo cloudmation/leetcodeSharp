@@ -68,6 +68,7 @@
     <Compile Include="SubsetsSol.cs" />
     <Compile Include="TreeNode.cs" />
     <Compile Include="Utlilitiy.cs" />
+    <Compile Include="WordBreakIISol.cs" />
     <Compile Include="WordLadder.cs" />
     <Compile Include="WordLadder2.cs" />
     <Compile Include="WordLadder2Sol2.cs" />

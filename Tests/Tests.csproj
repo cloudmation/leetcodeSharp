@@ -68,6 +68,7 @@
     <Compile Include="SubsetsTest.cs" />
     <Compile Include="WordLadder2Test.cs" />
     <Compile Include="WordLadderTest.cs" />
+    <Compile Include="WorkBreakIITest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
